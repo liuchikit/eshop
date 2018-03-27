@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhumian.mapper.system.RightMapper" >
+
+    <select id="queryRights"  parameterType="java.util.Map" resultType="com.zhumian.entity.system.RightVO">
+        select rig.*,u.id userId,role.id roleId
+        from tb_right rig
+        left join tb_role_right rr on rr.right_id = rig.id
+        left join tb_role role on role.id = rr.role_id
+        <if test="roleId != null">
+            and role.id = #{roleId}
+        </if>
+        left join tb_user_role ur on ur.role_id = role.id
+        left join tb_user u on u.id = ur.user_id
+        <if test="userId != null">
+            and u.id = #{userId}
+        </if>
+        where 1 = 1
+
+        <if test="rightType != null">
+            and rig.right_type = #{rightType}
+        </if>
+        <if test="level != null">
+            and rig.level = #{level}
+        </if>
+        <if test="pid != null">
+            and rig.pid = #{pid}
+        </if>
+      /*  group by rig.id*/
+        order by rig.sort asc
+    </select>
+
+</mapper>

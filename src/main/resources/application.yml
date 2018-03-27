@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/eshop_dev
+    username: root
+    password: 123456
+    #type: org.apache.commons.dbcp.BasicDataSource
+
+  mvc:
+    static-path-pattern: classpath:/static/**
+
+  resources:
+    static-locations: classpath:/static/
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+ # thymeleaf:
+  #  prefix: /
+   # suffix: .html
+    #encoding: utf-8
+    #cache: false
+    #servlet:
+      #content-type: text/html
+
+
+
+#mybatis:
+  #mapper-locations: classpath:mapper/**/*.xml
+  #type-aliases-package: com.zhumian.entity
+
+#mapper:
+  #mappers: com.zhumian.config.BaseMapper
+  #identity: MYSQL
+  #not-empty: false
+
+
+
+
